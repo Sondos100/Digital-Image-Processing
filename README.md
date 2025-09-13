@@ -84,15 +84,15 @@ flowchart LR
 
 ## 📑 Applications  
 
-Matrix-based image processing is foundational in many domains:  
+Matrix-based image processing underpins a wide range of fields:  
 
-- **Computer Vision** — Preprocessing for recognition, detection, and classification  
-- **Photography & Media** — Image enhancements, filters, and corrections  
-- **Medical Imaging** — Improving clarity and contrast in X-rays, MRIs, and CT scans  
-- **Graphics & Design** — Digital art, photo editing, and visual effects  
-- **Artificial Intelligence** — Data preprocessing for deep learning and machine vision  
-- **Remote Sensing** — Satellite image analysis and environmental monitoring  
-- **Game Development** — Texture processing and visual rendering  
+- 🖼 **Computer Vision** → Preprocessing for object detection, recognition, and classification  
+- 📷 **Photography & Media** → Image corrections, filtering, and creative enhancements  
+- 🧪 **Medical Imaging** → Improved clarity in X-rays, MRIs, and CT scans  
+- 🎨 **Graphics & Design** → Digital art creation, editing, and effects pipelines  
+- 🤖 **Artificial Intelligence** → Data preprocessing for deep learning models  
+- 🛰 **Remote Sensing** → Satellite image analysis and environmental monitoring  
+- 🎮 **Game Development** → Texture manipulation and visual rendering  
 
 ---
 
