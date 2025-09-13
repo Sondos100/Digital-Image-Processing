@@ -2,8 +2,7 @@
 
 ![C++](https://img.shields.io/badge/Language-C++-blue.svg)  
 ![Status](https://img.shields.io/badge/Status-In_Progress-yellow.svg)  
-![Domain](https://img.shields.io/badge/Topic-Computer_Vision-blueviolet.svg)  
-![Concepts](https://img.shields.io/badge/Core-Matrix_Operations-white.svg)  
+![Domain](https://img.shields.io/badge/Topic-Computer_Vision-blueviolet.svg)
 
 A **C++ implementation of Digital Image Processing** using matrix operations on `.ppm` images.  
 This project was developed as part of the **FuzeTek Summer Internship 2025 (Project 5)** to practice **Object-Oriented Programming (OOP)**, file handling, and applying **linear algebra concepts** in real-world computer vision tasks.  
