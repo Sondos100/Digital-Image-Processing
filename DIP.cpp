@@ -175,8 +175,16 @@ Image flipHorizontal(const Image& input) {
     int width = input.getWidth();
     int channels = input.getChannels();
     Image output(width, height, channels);
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int c = 0; c < channels; c++) {
+                output(y, width-1-x, c) = input(y, x, c);
+            }
+        }
+    }
+    return output;
 
-    // TODO: Implement this function
+    // TODO: Done :)
     // For each pixel and each channel:
     //   output(y, width-1-x, c) = input(y, x, c)
 
@@ -457,4 +465,5 @@ int main() {
     cout << "Use an image viewer that supports PPM format or convert them to PNG/JPG.\n";
 
     return 0;
+
 }
