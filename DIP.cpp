@@ -455,6 +455,170 @@ Image rotate90(const Image &input)
     return output;
 }
 
+// ======================= BONUS FUNCTIONS =======================
+
+/**
+ * Applies a sepia filter to the image
+ *
+ * Steps:
+ * 1. Create a new image with the same dimensions as the input
+ * 2. For each pixel in the input image:
+ *    - Get the R, G, and B values
+ *    - Calculate new R, G, and B values using the sepia formula:
+ *        newR = 0.393 * R + 0.769 * G + 0.189 * B
+ *        newG = 0.349 * R + 0.686 * G + 0.168 * B
+ *        newB = 0.272 * R + 0.534 * G + 0.131 * B
+ *    - Clamp each new value between 0 and 255
+ *    - Set the new R, G, and B values in the output image
+ * 3. Return the sepia-toned image
+ */
+Image sepiaFilter(const Image &input)
+{
+    int height = input.getHeight();
+    int width = input.getWidth();
+    int channels = input.getChannels();
+    Image output(width, height, channels);
+
+    // TODO: Implement this function
+    // For each pixel:
+    //   Get R, G, B values from input image
+    //   Calculate newR, newG, newB using sepia formula
+    //   Clamp each to [0, 255]
+    //   Set output(y, x, 0) = newR, output(y, x, 1) = newG, output(y, x, 2) = newB
+
+    if(channels < 3)
+    {
+        // Reject if not a colored image (e.g., grayscale)
+        cerr << "Error: Sepia filter requires a colored image with at least 3 channels." << endl;
+        return output;
+    }
+
+    // Iterate through every pixel (Working on RGB images only)
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            int R = input(y, x, 0);
+            int G = input(y, x, 1);
+            int B = input(y, x, 2);
+
+            // Apply sepia formula
+            int new_R = static_cast<int>(0.393 * R + 0.769 * G + 0.189 * B);
+            int new_G = static_cast<int>(0.349 * R + 0.686 * G + 0.168 * B);
+            int new_B = static_cast<int>(0.272 * R + 0.534 * G + 0.131 * B);
+
+            // Clamp values to [0, 255]
+            new_R = min(255, new_R);
+            new_R = max(0, new_R);
+
+            new_G = min(255, new_G);
+            new_G = max(0, new_G);
+
+            new_B = min(255, new_B);
+            new_B = max(0, new_B);
+
+            // Set new values in output image
+            output(y, x, 0) = new_R;
+            output(y, x, 1) = new_G;
+            output(y, x, 2) = new_B;
+        }
+    }
+
+    return output;
+}
+
+/**
+ * Inverts the colors of the image
+ *
+ * Steps:
+ * 1. Create a new image with the same dimensions as the input
+ * 2. For each pixel and each color channel:
+ *    - Subtract the pixel value from 255
+ *    - Set the output pixel to this inverted value
+ * 3. Return the color-inverted image
+ */
+Image invertColors(const Image &input)
+{
+    int height = input.getHeight();
+    int width = input.getWidth();
+    int channels = input.getChannels();
+    Image output(width, height, channels);
+
+    // TODO: Implement this function
+    // For each pixel and each channel:
+    //   output(y, x, c) = 255 - input(y, x, c)
+
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
+                int inverted = 255 - input(y, x, c);
+                inverted = max(0, min(255, inverted)); // Clamp to [0, 255]
+                output(y, x, c) = inverted;
+            }
+        }
+    }
+
+    return output;
+}
+
+/**
+ * Isolates a specific color channel in the image
+ * AKA: Single Color Effect
+ *
+ * Steps:
+ * 1. Create a new image with the same dimensions as the input
+ * 2. For each pixel:
+ *    - If the channel index matches the specified channel, copy the value from the input
+ *    - Otherwise, set the value to 0
+ * 3. Return the channel-isolated image
+ */
+Image channelIsolation(const Image &input, int channel)
+{
+    int height = input.getHeight();
+    int width = input.getWidth();
+    int channels = input.getChannels();
+    Image output(width, height, channels);
+
+    // TODO: Implement this function
+    // For each pixel:
+    //   If c == channel:
+    //     output(y, x, c) = input(y, x, c)
+    //   Else:
+    //     output(y, x, c) = 0
+
+    if (channel < 0 || channel >= channels || channels < 3)
+    {
+        // Reject if invalid channel or not a colored image
+        cerr << "Error: Invalid channel index for isolation." << endl;
+        return output;
+    }
+
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
+                if (c == channel)
+                {
+                    output(y, x, c) = input(y, x, c);
+                }
+                else
+                {
+                    output(y, x, c) = 0;
+                }
+            }
+        }
+    }
+
+    return output;
+}
+
+// ======================= END OF BONUS FUNCTIONS =======================
+
 // Creates a simple 4x4 test image with a pattern
 void createTestImage(const string &filename)
 {
@@ -585,6 +749,30 @@ int main()
     cout << "- 90-degree rotation completed\n";
     cout << "Rotated image data:\n";
     rotated.print();
+    cout << endl;
+
+    // Bonus: Sepia Filter
+    Image sepia = sepiaFilter(input);
+    sepia.savePPM("sepia_image.ppm");
+    cout << "- Sepia filter completed\n";
+    cout << "Sepia image data:\n";
+    sepia.print();
+    cout << endl;
+
+    // Bonus: Color Inversion
+    Image inverted = invertColors(input);
+    inverted.savePPM("inverted_image.ppm");
+    cout << "- Color inversion completed\n";
+    cout << "Inverted image data:\n";
+    inverted.print();
+    cout << endl;
+
+    // Bonus: Channel Isolation (e.g., isolate Red channel)
+    Image redChannel = channelIsolation(input, 0); // 0 for Red channel
+    redChannel.savePPM("red_channel_image.ppm");
+    cout << "- Red channel isolation completed\n";
+    cout << "Red channel isolated image data:\n";
+    redChannel.print();
     cout << endl;
 
     cout << "\nAll operations completed successfully!\n";
