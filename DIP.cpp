@@ -210,6 +210,14 @@ Image flipVertical(const Image& input) {
     // TODO: Implement this function
     // For each pixel and each channel:
     //   output(height-1-y, x, c) = input(y, x, c)
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int c = 0; c < channels; c++) {
+                // iterate through every pixel in the original image
+                output(height - 1 - y, x,c) = input(y, x, c);
+            }
+        }
+    }
 
     return output;
 }
@@ -234,6 +242,16 @@ Image adjustBrightness(const Image& input, int value) {
     // For each pixel and each channel:
     //   new_value = input(y, x, c) + value
     //   output(y, x, c) = max(0, min(255, new_value))
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int c = 0; c < channels; c++) {
+                // Add brightness and clamp to [0, 255]
+                int new_value = input(y, x, c) + value;
+                new_value = std::max(0, std::min(255, new_value));//handle below 0
+                output(y, x, c) = new_value;
+            }
+        }
+    }
 
     return output;
 }
