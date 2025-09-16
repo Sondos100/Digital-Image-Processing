@@ -1,7 +1,7 @@
 # 📸 Digital Image Processing with Matrices  
 
 ![C++](https://img.shields.io/badge/Language-C++-blue.svg)  
-![Status](https://img.shields.io/badge/Status-In_Progress-yellow.svg)  
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen.svg)  
 ![Domain](https://img.shields.io/badge/Topic-Computer_Vision-blueviolet.svg)
 
 A **C++ implementation of Digital Image Processing** using matrix operations on `.ppm` images.  
@@ -24,6 +24,9 @@ By applying **mathematical operations** on these matrices, the project demonstra
 - ✅ **Contrast Adjustment** → Enhance or reduce contrast by scaling around midpoint  
 - ✅ **Blurring** → Apply a 3×3 averaging filter for smoothing  
 - ✅ **Rotation (90°)** → Rotate images clockwise using matrix transposition  
+- ✅ **Sepia Filter** → Apply a warm, vintage tone using weighted transformations  
+- ✅ **Negative Image** → Invert colors for photographic negative effect  
+- ✅ **Channel Isolation** → Extract and visualize individual color channels (R/G/B)  
 - ✅ **PPM File Handling** → Load and save `.ppm` images with pixel-level control  
 - ✅ **Test Image Generator** → Programmatically create a 4×4 test image for validation  
 
@@ -51,9 +54,10 @@ flowchart LR
 
     C -->|Grayscale| D
     C -->|Flipping| D
-    C -->|Brightness/Contrast| D
+    C -->|Brightness / Contrast| D
     C -->|Blurring| D
     C -->|Rotation 90deg| D
+    C -->|Sepia / Negative / Channel Isolation| D
 ```
 
 ---
@@ -75,9 +79,14 @@ flowchart LR
    - `flipped_horizontal.ppm`  
    - `flipped_vertical.ppm`  
    - `bright_image.ppm`  
-   - `contrast_image.ppm`  
+   - `contrast_image_low.ppm`  
+   - `contrast_image_mid.ppm`  
+   - `contrast_image_high.ppm`  
    - `blurred_image.ppm`  
    - `rotated90_image.ppm`  
+   - `sepia_image.ppm`  
+   - `inverted_image.ppm`  
+   - `red_channel_image.ppm`  
 
 ---
 
@@ -100,7 +109,7 @@ Matrix-based image processing underpins a wide range of fields:
 - Representing images as **mathematical matrices**  
 - Applying **matrix operations** for real-world transformations  
 - Strengthening skills in **C++ OOP, algorithms, and file handling**  
-- Gaining foundational knowledge in **computer vision and image analysis**  
+- Building a foundation for **computer vision and image analysis**  
 
 ---
 
@@ -109,8 +118,8 @@ Matrix-based image processing underpins a wide range of fields:
 - Edge detection (Sobel, Prewitt filters)  
 - Arbitrary angle rotation and image scaling  
 - Cropping and region-of-interest processing  
-- Advanced color effects (negative, sepia, channel isolation)  
-- Broader format support (PNG, JPEG)  
+- Additional color effects (e.g., artistic filters)  
+- Support for modern formats (PNG, JPEG)  
 
 ---
 
